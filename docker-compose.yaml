@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: 69-s1-db
+    ports:
+      - "54327:5432"
+    environment:
+      - POSTGRES_PASSWORD=0925480818Za
+      - POSTGRES_USER=wutthipong
+      - POSTGRES_DB=wutthipong
+    volumes:
+      - .data/data:/var/lib/postgresql/data
+
+  admin:
+    image: dpage/pgadmin4:latest
+    container_name: 69-s1-admin
+    ports:
+      - "8080:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=wutthipong-k@rmutp.ac.th
+      - PGADMIN_DEFAULT_PASSWORD=0925480818Za
