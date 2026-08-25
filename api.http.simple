@@ -1,15 +1,40 @@
-# API
+### Register / Signup
+POST http://localhost:9091/api/auth/local/register
+Content-Type: application/json
 
-## Login
+{
+  "username": "wutthipong",
+  "email": "wutthipong-k@rmutp.ac.th",
+  "password": "0925480818Za"
+}
+
+### Login User
+POST http://localhost:9091/api/auth/local
+Content-Type: application/json
+
+{
+  "identifier": "wutthipong-k@rmutp.ac.th",
+  "password": "0925480818Za"
+}
+
+### Login Admin
 POST http://localhost:9091/admin/login
 Content-Type: application/json
 
 {
-    "email": "", 
-    "password": "", 
-    "rememberMe": false
+  "email": "wutthipong-k@rmutp.ac.th",
+  "password": "0925480818Za",
+  "rememberMe": false
 }
 
-## Forgot
-## Profile
-## Register / Signup
+### Forgot Password
+POST http://localhost:9091/api/auth/forgot-password
+Content-Type: application/json
+
+{
+  "email": "wutthipong-k@rmutp.ac.th"
+}
+
+### Profile
+GET http://localhost:9091/api/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg3Njc0ODU5LCJleHAiOjE3OTAyNjY4NTl9.yPC1nN4KLMqS34MTola4j7ZYIQA0M6ly4tgLZvSMHi4
