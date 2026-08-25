@@ -38,7 +38,7 @@
     restart: unless-stopped
 
     ports:
-      - "127.0.0.1:9092:1337"
+      - "127.0.0.1:9091:1337"
 
     environment:
       - DATABASE_CLIENT=postgres
