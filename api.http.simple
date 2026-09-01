@@ -1,40 +1,73 @@
-### Register / Signup
-POST http://localhost:9091/api/auth/local/register
+##################################################
+# 1. ADMIN OPERATIONS
+##################################################
+
+### 1. Register Admin
+POST http://localhost:9091/admin/register-admin
 Content-Type: application/json
 
 {
-  "username": "",
-  "email": "",
-  "password": ""
+    "firstname": "",
+    "lastname": "",
+    "email": "",
+    "password": "",
+    "registrationToken": ""
 }
 
-### Login User
-POST http://localhost:9091/api/auth/local
-Content-Type: application/json
-
-{
-  "identifier": "",
-  "password": ""
-}
-
-### Login Admin
+### 2. Login Admin
+# @name adminLogin
 POST http://localhost:9091/admin/login
 Content-Type: application/json
 
 {
-  "email": "",
-  "password": "",
-  "rememberMe": false
+    "email": "",
+    "password": ""
 }
 
-### Forgot Password
+### 3. Forgot Password Admin
+POST http://localhost:9091/admin/forgot-password
+Content-Type: application/json
+
+{
+    "email": ""
+}
+
+### 4. Profile Admin
+GET http://localhost:9091/admin/users/me
+Authorization: Bearer {{adminLogin.response.body.data.token}}
+
+##################################################
+# 2. USER OPERATIONS
+##################################################
+
+### 1. Register User
+POST http://localhost:9091/api/auth/local/register
+Content-Type: application/json
+
+{
+    "username": "",
+    "email": "",
+    "password": ""
+}
+
+### 2. Login User
+# @name userLogin
+POST http://localhost:9091/api/auth/local
+Content-Type: application/json
+
+{
+    "identifier": "",
+    "password": ""
+}
+
+### 3. Forgot Password User
 POST http://localhost:9091/api/auth/forgot-password
 Content-Type: application/json
 
 {
-  "email": ""
+    "email": ""
 }
 
-### Profile
+### 4. Profile User
 GET http://localhost:9091/api/users/me
-Authorization: Bearer 
+Authorization: Bearer {{userLogin.response.body.jwt}}
