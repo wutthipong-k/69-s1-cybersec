@@ -18,11 +18,19 @@
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+  mailhog:
+    image: mailhog/mailhog
+    container_name: 69-s1-mailhog
+    ports:
+      - ${MAILHOG_UI_PORT}:8025
+      - ${MAILHOG_SMTP_PORT}:1025
   app:
     image: prawee/strapi
     container_name: 69-s1-app
     ports:
       - ${APP_PORT}:1337
+    volumes:
+      - ./config/plugins.js:/opt/app/config/plugins.js
     environment:
       - DATABASE_CLIENT=${DATABASE_CLIENT}
       - DATABASE_NAME=${DATABASE_NAME}
@@ -30,3 +38,8 @@
       - DATABASE_PORT=${DATABASE_PORT}
       - DATABASE_USERNAME=${DATABASE_USERNAME}
       - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - SMTP_HOST=mailhog
+      - SMTP_PORT=1025
+      - SMTP_USERNAME=
+      - SMTP_PASSWORD=
+      - SMTP_FROM=noreply@example.com
