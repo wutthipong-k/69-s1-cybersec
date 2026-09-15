@@ -36,6 +36,16 @@ Content-Type: application/json
 GET http://localhost:9091/admin/users/me
 Authorization: Bearer {{adminLogin.response.body.data.token}}
 
+### 5. Reset Password Admin
+# resetPasswordToken ได้จากลิงก์ในอีเมล (จากข้อ 3)
+POST http://localhost:9091/admin/reset-password
+Content-Type: application/json
+
+{
+    "resetPasswordToken": "",
+    "password": ""
+}
+
 ##################################################
 # 2. USER OPERATIONS
 ##################################################
@@ -71,3 +81,14 @@ Content-Type: application/json
 ### 4. Profile User
 GET http://localhost:9091/api/users/me
 Authorization: Bearer {{userLogin.response.body.jwt}}
+
+### 5. Reset Password User
+# code ได้จากอีเมล (จากข้อ 3)
+POST http://localhost:9091/api/auth/reset-password
+Content-Type: application/json
+
+{
+    "code": "",
+    "password": "",
+    "passwordConfirmation": ""
+}
