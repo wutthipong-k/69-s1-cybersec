@@ -1,5 +1,5 @@
 ##################################################
-# 1. ADMIN OPERATIONS
+# PROTOTYPE - ADMIN OPERATIONS
 ##################################################
 
 ### 1. Register Admin
@@ -7,11 +7,10 @@ POST http://localhost:9091/admin/register-admin
 Content-Type: application/json
 
 {
-    "firstname": "",
-    "lastname": "",
-    "email": "",
-    "password": "",
-    "registrationToken": ""
+    "firstname": "wutthipong",
+    "lastname": "kamklan",
+    "email": "temgogo3@gmail.com",
+    "password": "0925480818Za"
 }
 
 ### 2. Login Admin
@@ -20,8 +19,8 @@ POST http://localhost:9091/admin/login
 Content-Type: application/json
 
 {
-    "email": "",
-    "password": ""
+    "email": "temgogo3@gmail.com",
+    "password": "0925480818Za"
 }
 
 ### 3. Forgot Password Admin
@@ -29,25 +28,25 @@ POST http://localhost:9091/admin/forgot-password
 Content-Type: application/json
 
 {
-    "email": ""
+    "email": "temgogo3@gmail.com"
+}
+
+### 3.1 Reset Password Admin
+# resetPasswordToken ได้จากลิงก์ในอีเมล (ข้อ 3)
+POST http://localhost:9091/admin/reset-password
+Content-Type: application/json
+
+{
+    "resetPasswordToken": "",
+    "password": "0925480818Za"
 }
 
 ### 4. Profile Admin
 GET http://localhost:9091/admin/users/me
 Authorization: Bearer {{adminLogin.response.body.data.token}}
 
-### 5. Reset Password Admin
-# resetPasswordToken ได้จากลิงก์ในอีเมล (จากข้อ 3)
-POST http://localhost:9091/admin/reset-password
-Content-Type: application/json
-
-{
-    "resetPasswordToken": "",
-    "password": ""
-}
-
 ##################################################
-# 2. USER OPERATIONS
+# PROTOTYPE - USER OPERATIONS
 ##################################################
 
 ### 1. Register User
@@ -55,9 +54,9 @@ POST http://localhost:9091/api/auth/local/register
 Content-Type: application/json
 
 {
-    "username": "",
-    "email": "",
-    "password": ""
+    "username": "wutthipong",
+    "email": "temgogo3@gmail.com",
+    "password": "0925480818Za"
 }
 
 ### 2. Login User
@@ -66,8 +65,8 @@ POST http://localhost:9091/api/auth/local
 Content-Type: application/json
 
 {
-    "identifier": "",
-    "password": ""
+    "identifier": "wutthipong",
+    "password": "0925480818Za"
 }
 
 ### 3. Forgot Password User
@@ -75,20 +74,20 @@ POST http://localhost:9091/api/auth/forgot-password
 Content-Type: application/json
 
 {
-    "email": ""
+    "email": "temgogo3@gmail.com"
 }
 
-### 4. Profile User
-GET http://localhost:9091/api/users/me
-Authorization: Bearer {{userLogin.response.body.jwt}}
-
-### 5. Reset Password User
-# code ได้จากอีเมล (จากข้อ 3)
+### 3.1 Reset Password User
+# code ได้จากอีเมล (ข้อ 3)
 POST http://localhost:9091/api/auth/reset-password
 Content-Type: application/json
 
 {
     "code": "",
-    "password": "",
-    "passwordConfirmation": ""
+    "password": "0925480818Za",
+    "passwordConfirmation": "0925480818Za"
 }
+
+### 4. Profile User
+GET http://localhost:9091/api/users/me
+Authorization: Bearer {{userLogin.response.body.jwt}}
