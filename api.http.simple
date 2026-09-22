@@ -1,93 +1,89 @@
-##################################################
-# PROTOTYPE - ADMIN OPERATIONS
-##################################################
+# 1. ADMIN
 
-### 1. Register Admin
-POST http://localhost:9091/admin/register-admin
-Content-Type: application/json
-
-{
-    "firstname": "wutthipong",
-    "lastname": "kamklan",
-    "email": "temgogo3@gmail.com",
-    "password": "0925480818Za"
-}
-
-### 2. Login Admin
+### 1.1 Login Admin
 # @name adminLogin
 POST http://localhost:9091/admin/login
 Content-Type: application/json
 
 {
-    "email": "temgogo3@gmail.com",
-    "password": "0925480818Za"
+    "email": "",
+    "password": ""
 }
 
-### 3. Forgot Password Admin
+### 1.2 Signup / Register Admin
+POST http://localhost:9091/admin/register-admin
+Content-Type: application/json
+
+{
+    "firstname": "",
+    "lastname": "",
+    "email": "",
+    "password": ""
+}
+
+### 1.3 Forgot Password Admin
 POST http://localhost:9091/admin/forgot-password
 Content-Type: application/json
 
 {
-    "email": "temgogo3@gmail.com"
+    "email": ""
 }
 
-### 3.1 Reset Password Admin
-# resetPasswordToken ได้จากลิงก์ในอีเมล (ข้อ 3)
+### 1.3.1 Reset Password Admin
+# resetPasswordToken ได้จากลิงก์ในอีเมล (ข้อ 1.3 เปิดดูที่ Mailhog http://localhost:8025)
 POST http://localhost:9091/admin/reset-password
 Content-Type: application/json
 
 {
-    "resetPasswordToken": "",
-    "password": "0925480818Za"
+    "resetPasswordToken": "3dc9f159aa8b1fb033a8d17e14d3ad6c55560ca4",
+    "password": ""
 }
 
-### 4. Profile Admin
+### 1.4 Profile Admin
 GET http://localhost:9091/admin/users/me
 Authorization: Bearer {{adminLogin.response.body.data.token}}
 
-##################################################
-# PROTOTYPE - USER OPERATIONS
-##################################################
+# 2. USER
 
-### 1. Register User
-POST http://localhost:9091/api/auth/local/register
-Content-Type: application/json
-
-{
-    "username": "wutthipong",
-    "email": "temgogo3@gmail.com",
-    "password": "0925480818Za"
-}
-
-### 2. Login User
+### 2.1 Login User
 # @name userLogin
 POST http://localhost:9091/api/auth/local
 Content-Type: application/json
 
 {
-    "identifier": "wutthipong",
-    "password": "0925480818Za"
+    "identifier": "",
+    "password": ""
 }
 
-### 3. Forgot Password User
+### 2.2 Signup / Register User
+POST http://localhost:9091/api/auth/local/register
+Content-Type: application/json
+
+{
+    "username": "",
+    "email": "",
+    "password": ""
+}
+
+### 2.3 Forgot Password User
 POST http://localhost:9091/api/auth/forgot-password
 Content-Type: application/json
 
 {
-    "email": "temgogo3@gmail.com"
+    "email": ""
 }
 
-### 3.1 Reset Password User
-# code ได้จากอีเมล (ข้อ 3)
+### 2.3.1 Reset Password User
+# code ได้จากอีเมล (ข้อ 2.3 เปิดดูที่ Mailhog http://localhost:8025)
 POST http://localhost:9091/api/auth/reset-password
 Content-Type: application/json
 
 {
-    "code": "",
-    "password": "0925480818Za",
-    "passwordConfirmation": "0925480818Za"
+    "code": "e9a5773c24ab504a73dec032c7ece3459ad2dc66e5a4952f66ad7cb6f16984d6af1976a0d99be111c0c2d2130a24f37adfd8357b1fb3c1765ea76818973f2b73",
+    "password": "",
+    "passwordConfirmation": ""
 }
 
-### 4. Profile User
+### 2.4 Profile User
 GET http://localhost:9091/api/users/me
 Authorization: Bearer {{userLogin.response.body.jwt}}
