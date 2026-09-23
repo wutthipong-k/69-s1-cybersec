@@ -87,3 +87,125 @@ Content-Type: application/json
 ### 2.4 Profile User
 GET http://localhost:9091/api/users/me
 Authorization: Bearer {{userLogin.response.body.jwt}}
+
+## 3. Content
+# ต้องเปิดสิทธิ์ใน Admin → Settings → Users & Permissions → Roles → Authenticated
+# ให้ Student / Teacher / Subject (find, findOne, create, update, delete) ก่อน
+# ใช้ JWT ของ User จากข้อ 2.1
+
+### 3.1 Student
+### 3.1.1 Create Student
+# หมายเหตุ: mobile จะถูก hash เป็น MD5 อัตโนมัติจาก lifecycle beforeCreate
+POST http://localhost:9091/api/students
+Authorization: Bearer {{userLogin.response.body.jwt}}
+Content-Type: application/json
+
+{
+    "data": {
+        "name": "Somchai Jaidee",
+        "mobile": "0891234567",
+        "cardId": "1103701234567"
+    }
+}
+
+### 3.1.2 Get Student
+# ดึงรายการนักเรียนทั้งหมด
+GET http://localhost:9091/api/students
+Authorization: Bearer {{userLogin.response.body.jwt}}
+
+### 3.1.3 Update Student
+# ใช้ id จากผลลัพธ์การ Create (ข้อ 3.1.1)
+PUT http://localhost:9091/api/students/1
+Authorization: Bearer {{userLogin.response.body.jwt}}
+Content-Type: application/json
+
+{
+    "data": {
+        "name": "Somchai Jaidee Updated",
+        "mobile": "0891234567",
+        "cardId": "1103701234567"
+    }
+}
+
+### 3.1.4 Delete Student
+# ใช้ id จากผลลัพธ์การ Create (ข้อ 3.1.1)
+DELETE http://localhost:9091/api/students/1
+Authorization: Bearer {{userLogin.response.body.jwt}}
+
+### 3.1.5 Get Student by id
+GET http://localhost:9091/api/students/1
+Authorization: Bearer {{userLogin.response.body.jwt}}
+
+### 3.2 Teacher
+### 3.2.1 Create Teacher
+POST http://localhost:9091/api/teachers
+Authorization: Bearer {{userLogin.response.body.jwt}}
+Content-Type: application/json
+
+{
+    "data": {
+        "name": "Ajarn Wutthipong"
+    }
+}
+
+### 3.2.2 Get Teacher
+GET http://localhost:9091/api/teachers
+Authorization: Bearer {{userLogin.response.body.jwt}}
+
+### 3.2.3 Update Teacher
+# ใช้ id จากผลลัพธ์การ Create (ข้อ 3.2.1)
+PUT http://localhost:9091/api/teachers/1
+Authorization: Bearer {{userLogin.response.body.jwt}}
+Content-Type: application/json
+
+{
+    "data": {
+        "name": "Ajarn Wutthipong Updated"
+    }
+}
+
+### 3.2.4 Delete Teacher
+# ใช้ id จากผลลัพธ์การ Create (ข้อ 3.2.1)
+DELETE http://localhost:9091/api/teachers/1
+Authorization: Bearer {{userLogin.response.body.jwt}}
+
+### 3.2.5 Get Teacher by id
+GET http://localhost:9091/api/teachers/1
+Authorization: Bearer {{userLogin.response.body.jwt}}
+
+### 3.3 Subject
+### 3.3.1 Create Subject
+POST http://localhost:9091/api/subjects
+Authorization: Bearer {{userLogin.response.body.jwt}}
+Content-Type: application/json
+
+{
+    "data": {
+        "name": "Cybersecurity"
+    }
+}
+
+### 3.3.2 Get Subject
+GET http://localhost:9091/api/subjects
+Authorization: Bearer {{userLogin.response.body.jwt}}
+
+### 3.3.3 Update Subject
+# ใช้ id จากผลลัพธ์การ Create (ข้อ 3.3.1)
+PUT http://localhost:9091/api/subjects/1
+Authorization: Bearer {{userLogin.response.body.jwt}}
+Content-Type: application/json
+
+{
+    "data": {
+        "name": "Cybersecurity Updated"
+    }
+}
+
+### 3.3.4 Delete Subject
+# ใช้ id จากผลลัพธ์การ Create (ข้อ 3.3.1)
+DELETE http://localhost:9091/api/subjects/1
+Authorization: Bearer {{userLogin.response.body.jwt}}
+
+### 3.3.5 Get Subject by id
+GET http://localhost:9091/api/subjects/1
+Authorization: Bearer {{userLogin.response.body.jwt}}
