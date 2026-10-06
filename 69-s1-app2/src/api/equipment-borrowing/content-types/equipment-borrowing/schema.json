@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "equipment_borrowings",
+  "info": {
+    "singularName": "equipment-borrowing",
+    "pluralName": "equipment-borrowings",
+    "displayName": "Equipment Borrowing",
+    "description": "ระบบยืมอุปกรณ์กีฬา - สาธิต Confidentiality (AES-256) + Integrity (SHA-256 hash)"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "equipment_name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 80
+    },
+    "quantity": {
+      "type": "integer",
+      "min": 1,
+      "max": 99,
+      "default": 1
+    },
+    "borrower_name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 120
+    },
+    "borrower_id_card": {
+      "type": "text",
+      "required": true
+    },
+    "borrower_phone": {
+      "type": "text",
+      "required": true
+    },
+    "borrow_date": {
+      "type": "date",
+      "required": true
+    },
+    "return_date": {
+      "type": "date"
+    },
+    "borrow_status": {
+      "type": "enumeration",
+      "enum": ["borrowed", "returned"],
+      "default": "borrowed"
+    },
+    "note": {
+      "type": "text"
+    },
+    "integrity_hash": {
+      "type": "string",
+      "default": ""
+    }
+  }
+}

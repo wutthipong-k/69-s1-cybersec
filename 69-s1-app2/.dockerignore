@@ -1,0 +1,31 @@
+# dependencies
+node_modules/
+
+# secrets (ห้าม COPY เข้า image)
+.env
+.env.example
+
+# local database / sqlite
+.tmp
+database/
+*.sqlite
+*.sqlite3
+
+# strapi build artifacts
+dist/
+build/
+exports/
+.strapi/
+.strapi-updater.json
+.strapi-cloud.json
+types/generated/
+
+# uploads
+public/uploads/
+
+# misc
+*.log
+.git/
+.gitignore
+README.md
+license.txt

@@ -1,4 +1,4 @@
-# 1. ADMIN
+﻿# 1. ADMIN
 
 ### 1.1 Login Admin
 # @name adminLogin
@@ -30,12 +30,12 @@ Content-Type: application/json
 }
 
 ### 1.3.1 Reset Password Admin
-# resetPasswordToken ได้จากลิงก์ในอีเมล (ข้อ 1.3 เปิดดูที่ Mailhog http://localhost:8025)
+# resetPasswordToken à¹„à¸”à¹‰à¸ˆà¸²à¸à¸¥à¸´à¸‡à¸à¹Œà¹ƒà¸™à¸­à¸µà¹€à¸¡à¸¥ (à¸‚à¹‰à¸­ 1.3 à¹€à¸›à¸´à¸”à¸”à¸¹à¸—à¸µà¹ˆ Mailhog http://localhost:8025)
 POST http://localhost:9091/admin/reset-password
 Content-Type: application/json
 
 {
-    "resetPasswordToken": "3dc9f159aa8b1fb033a8d17e14d3ad6c55560ca4",
+    "resetPasswordToken": "",
     "password": ""
 }
 
@@ -74,12 +74,12 @@ Content-Type: application/json
 }
 
 ### 2.3.1 Reset Password User
-# code ได้จากอีเมล (ข้อ 2.3 เปิดดูที่ Mailhog http://localhost:8025)
+# code à¹„à¸”à¹‰à¸ˆà¸²à¸à¸­à¸µà¹€à¸¡à¸¥ (à¸‚à¹‰à¸­ 2.3 à¹€à¸›à¸´à¸”à¸”à¸¹à¸—à¸µà¹ˆ Mailhog http://localhost:8025)
 POST http://localhost:9091/api/auth/reset-password
 Content-Type: application/json
 
 {
-    "code": "e9a5773c24ab504a73dec032c7ece3459ad2dc66e5a4952f66ad7cb6f16984d6af1976a0d99be111c0c2d2130a24f37adfd8357b1fb3c1765ea76818973f2b73",
+    "code": "",
     "password": "",
     "passwordConfirmation": ""
 }
@@ -88,124 +88,57 @@ Content-Type: application/json
 GET http://localhost:9091/api/users/me
 Authorization: Bearer {{userLogin.response.body.jwt}}
 
-## 3. Content
-# ต้องเปิดสิทธิ์ใน Admin → Settings → Users & Permissions → Roles → Authenticated
-# ให้ Student / Teacher / Subject (find, findOne, create, update, delete) ก่อน
-# ใช้ JWT ของ User จากข้อ 2.1
+# 3. Content â€” à¸£à¸°à¸šà¸šà¸¢à¸·à¸¡à¸­à¸¸à¸›à¸à¸£à¸“à¹Œà¸à¸µà¸¬à¸² (à¸„à¸´à¸”à¸‚à¸¶à¹‰à¸™à¸¡à¸²à¹€à¸­à¸‡ à¹„à¸¡à¹ˆà¹ƒà¸Šà¹ˆà¸™à¸±à¸à¹€à¸£à¸µà¸¢à¸™/IT Helpdesk)
+#
+# âœ… Confidentiality: à¸Ÿà¸´à¸¥à¸”à¹Œ borrower_id_card à¹à¸¥à¸° borrower_phone à¸–à¸¹à¸à¹€à¸‚à¹‰à¸²à¸£à¸«à¸±à¸ª AES-256-GCM
+#    (à¹ƒà¸™ src/utils/crypto.ts) à¸à¹ˆà¸­à¸™à¸¥à¸‡à¸à¸²à¸™à¸‚à¹‰à¸­à¸¡à¸¹à¸¥ â€” à¹€à¸‚à¹‰à¸² PGAdmin/DBeaver à¸”à¸¹à¹„à¸Ÿà¸¥à¹Œ database à¹à¸¥à¹‰à¸§
+#    à¸ˆà¸°à¹€à¸«à¹‡à¸™à¸„à¹ˆà¸²à¹€à¸›à¹‡à¸™ "aes256gcm:..." à¹„à¸¡à¹ˆà¹ƒà¸Šà¹ˆà¹€à¸¥à¸‚à¸šà¸±à¸•à¸£à¸ˆà¸£à¸´à¸‡ (REST API à¸ˆà¸°à¸–à¸­à¸”à¸£à¸«à¸±à¸ªà¹ƒà¸«à¹‰à¹€à¸›à¹‡à¸™à¸‚à¹‰à¸­à¸„à¸§à¸²à¸¡à¸›à¸à¸•à¸´)
+# âœ… Integrity: à¸—à¸¸à¸ record à¸¡à¸µà¸Ÿà¸´à¸¥à¸”à¹Œ integrity_hash = SHA-256 à¸‚à¸­à¸‡à¸‚à¹‰à¸­à¸¡à¸¹à¸¥ (src/utils/integrity.ts)
+#    à¸¢à¸´à¸‡ GET /api/integrity/verify à¹€à¸žà¸·à¹ˆà¸­à¸•à¸£à¸§à¸ˆà¸§à¹ˆà¸²à¸¡à¸µà¹ƒà¸„à¸£à¹à¸­à¸šà¹à¸à¹‰ DB à¹‚à¸”à¸¢à¸•à¸£à¸‡à¸«à¸£à¸·à¸­à¹„à¸¡à¹ˆ
+#
+# à¸•à¸±à¹‰à¸‡à¸ªà¸´à¸—à¸˜à¸´à¹Œ: Admin â†’ Settings â†’ Users & Permissions â†’ Roles â†’ Authenticated â†’ Equipment Borrowing
+#   â†’ à¹€à¸›à¸´à¸” find / findOne / create / update (à¸•à¸²à¸¡à¸—à¸µà¹ˆà¸•à¹‰à¸­à¸‡à¸à¸²à¸£) â€” Content API à¹ƒà¸Šà¹‰ JWT User à¸ˆà¸²à¸à¸‚à¹‰à¸­ 2.1
+#
+# à¸Šà¸·à¹ˆà¸­ Content-Type: equipment-borrowing (plural: equipment-borrowings)
 
-### 3.1 Student
-### 3.1.1 Create Student
-# หมายเหตุ: mobile จะถูก hash เป็น MD5 อัตโนมัติจาก lifecycle beforeCreate
-POST http://localhost:9091/api/students
+### 3.1 Create Borrowing (à¸¢à¸·à¸¡à¸­à¸¸à¸›à¸à¸£à¸“à¹Œ)
+# @name createBorrowing
+POST http://localhost:9091/api/equipment-borrowings
 Authorization: Bearer {{userLogin.response.body.jwt}}
 Content-Type: application/json
 
 {
     "data": {
-        "name": "Somchai Jaidee",
-        "mobile": "0891234567",
-        "cardId": "1103701234567"
+        "equipment_name": "à¸šà¸²à¸ªà¹€à¸à¸•à¸šà¸­à¸¥",
+        "quantity": 2,
+        "borrower_name": "",
+        "borrower_id_card": "",
+        "borrower_phone": "",
+        "borrow_date": "2026-10-06",
+        "borrow_status": "borrowed",
+        "note": "à¸¢à¸·à¸¡à¸ªà¸³à¸«à¸£à¸±à¸šà¹€à¸¥à¹ˆà¸™à¸¨à¸¸à¸à¸£à¹Œà¸™à¸µà¹‰"
     }
 }
 
-### 3.1.2 Get Student
-# ดึงรายการนักเรียนทั้งหมด
-GET http://localhost:9091/api/students
+### 3.2 List Borrowings
+GET http://localhost:9091/api/equipment-borrowings
 Authorization: Bearer {{userLogin.response.body.jwt}}
 
-### 3.1.3 Update Student
-# ใช้ id จากผลลัพธ์การ Create (ข้อ 3.1.1)
-PUT http://localhost:9091/api/students/1
-Authorization: Bearer {{userLogin.response.body.jwt}}
-Content-Type: application/json
-
-{
-    "data": {
-        "name": "Somchai Jaidee Updated",
-        "mobile": "0891234567",
-        "cardId": "1103701234567"
-    }
-}
-
-### 3.1.4 Delete Student
-# ใช้ id จากผลลัพธ์การ Create (ข้อ 3.1.1)
-DELETE http://localhost:9091/api/students/1
+### 3.3 Get Borrowing by id
+# à¹ƒà¸Šà¹‰ id à¸ˆà¸²à¸à¸œà¸¥à¸¥à¸±à¸žà¸˜à¹Œà¸‚à¹‰à¸­ 3.1
+GET http://localhost:9091/api/equipment-borrowings/1
 Authorization: Bearer {{userLogin.response.body.jwt}}
 
-### 3.1.5 Get Student by id
-GET http://localhost:9091/api/students/1
-Authorization: Bearer {{userLogin.response.body.jwt}}
+### 3.4 Verify Integrity (à¸£à¸²à¸¢ record) â€” à¹ƒà¸Šà¹‰ id à¸ˆà¸²à¸à¸œà¸¥à¸¥à¸±à¸žà¸˜à¹Œà¸‚à¹‰à¸­ 3.1
+# Return: computed_md5 + computed_sha256 + stored_hash + valid (true = à¹„à¸¡à¹ˆà¸–à¸¹à¸à¹à¸­à¸šà¹à¸à¹‰à¹„à¸‚)
+GET http://localhost:9091/api/equipment-borrowings/1/integrity-hash
 
-### 3.2 Teacher
-### 3.2.1 Create Teacher
-POST http://localhost:9091/api/teachers
-Authorization: Bearer {{userLogin.response.body.jwt}}
-Content-Type: application/json
+### 3.5 Verify Integrity (à¸—à¸±à¹‰à¸‡à¸£à¸°à¸šà¸š) â€” à¸•à¸­à¸™à¸™à¸µà¹‰à¸—à¸¸à¸ record à¸„à¸§à¸£ valid_count = total, tamper_detected_count = 0
+GET http://localhost:9091/api/integrity/verify
 
-{
-    "data": {
-        "name": "Ajarn Wutthipong"
-    }
-}
-
-### 3.2.2 Get Teacher
-GET http://localhost:9091/api/teachers
-Authorization: Bearer {{userLogin.response.body.jwt}}
-
-### 3.2.3 Update Teacher
-# ใช้ id จากผลลัพธ์การ Create (ข้อ 3.2.1)
-PUT http://localhost:9091/api/teachers/1
-Authorization: Bearer {{userLogin.response.body.jwt}}
-Content-Type: application/json
-
-{
-    "data": {
-        "name": "Ajarn Wutthipong Updated"
-    }
-}
-
-### 3.2.4 Delete Teacher
-# ใช้ id จากผลลัพธ์การ Create (ข้อ 3.2.1)
-DELETE http://localhost:9091/api/teachers/1
-Authorization: Bearer {{userLogin.response.body.jwt}}
-
-### 3.2.5 Get Teacher by id
-GET http://localhost:9091/api/teachers/1
-Authorization: Bearer {{userLogin.response.body.jwt}}
-
-### 3.3 Subject
-### 3.3.1 Create Subject
-POST http://localhost:9091/api/subjects
-Authorization: Bearer {{userLogin.response.body.jwt}}
-Content-Type: application/json
-
-{
-    "data": {
-        "name": "Cybersecurity"
-    }
-}
-
-### 3.3.2 Get Subject
-GET http://localhost:9091/api/subjects
-Authorization: Bearer {{userLogin.response.body.jwt}}
-
-### 3.3.3 Update Subject
-# ใช้ id จากผลลัพธ์การ Create (ข้อ 3.3.1)
-PUT http://localhost:9091/api/subjects/1
-Authorization: Bearer {{userLogin.response.body.jwt}}
-Content-Type: application/json
-
-{
-    "data": {
-        "name": "Cybersecurity Updated"
-    }
-}
-
-### 3.3.4 Delete Subject
-# ใช้ id จากผลลัพธ์การ Create (ข้อ 3.3.1)
-DELETE http://localhost:9091/api/subjects/1
-Authorization: Bearer {{userLogin.response.body.jwt}}
-
-### 3.3.5 Get Subject by id
-GET http://localhost:9091/api/subjects/1
-Authorization: Bearer {{userLogin.response.body.jwt}}
+### 3.6 Test Tamper â€” à¸—à¸³à¸•à¸²à¸¡à¸‚à¸±à¹‰à¸™à¸•à¸­à¸™à¸à¹ˆà¸­à¸™à¸£à¸±à¸™:
+# 1) à¹€à¸›à¸´à¸” DB à¸”à¹‰à¸§à¸¢ PGAdmin (à¸«à¸£à¸·à¸­à¹„à¸Ÿà¸¥à¹Œ sqlite à¸–à¹‰à¸²à¹€à¸›à¹‡à¸™ dev)
+# 2) à¹à¸à¹‰à¹„à¸‚à¸„à¹ˆà¸²à¹‚à¸”à¸¢à¸•à¸£à¸‡ à¹€à¸Šà¹ˆà¸™ UPDATE equipment_borrowings SET quantity = 99 WHERE id = 1;
+#    (à¸«à¹‰à¸²à¸¡à¹à¸à¹‰à¸œà¹ˆà¸²à¸™ Strapi à¹€à¸žà¸£à¸²à¸°à¸ˆà¸°à¸–à¸¹à¸ lifecycle re-hash â€” à¸•à¹‰à¸­à¸‡à¹à¸à¹‰à¸•à¸£à¸‡ à¹† à¸—à¸µà¹ˆ DB)
+# 3) à¸£à¸±à¸™ 3.5 à¹ƒà¸«à¸¡à¹ˆ â†’ record à¸™à¸±à¹‰à¸™ tamper_detected = true (valid_count < total)
+# 4) à¸­à¸˜à¸´à¸šà¸²à¸¢à¹ƒà¸™à¸£à¸²à¸¢à¸‡à¸²à¸™à¸§à¹ˆà¸²à¸—à¸³à¹„à¸¡à¸£à¸°à¸šà¸šà¸•à¸£à¸§à¸ˆà¹€à¸ˆà¸­ â€” SHA-256 à¸‚à¸­à¸‡à¸‚à¹‰à¸­à¸¡à¸¹à¸¥à¸—à¸µà¹ˆà¹à¸à¹‰à¹à¸¥à¹‰à¸§ â‰  stored_hash

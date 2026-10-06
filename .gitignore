@@ -1,4 +1,16 @@
 data/
-.env
+.data/
 data-postgres/
+.env
 api.http
+
+# node
+node_modules/
+
+# strapi build artifacts
+dist/
+build/
+.cache/
+.tmp/
+public/uploads/
+*.log

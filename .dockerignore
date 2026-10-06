@@ -1,6 +1,0 @@
-data/
-data-postgres/
-.data/
-.env
-config/
-api.http
